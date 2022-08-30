@@ -8,6 +8,7 @@ import { I18nBreadcrumbResolver } from '../core/breadcrumbs/i18n-breadcrumb.reso
 import { GroupPageGuard } from './group-registry/group-page.guard';
 import { GroupAdministratorGuard } from '../core/data/feature-authorization/feature-authorization-guard/group-administrator.guard';
 import { SiteAdministratorGuard } from '../core/data/feature-authorization/feature-authorization-guard/site-administrator.guard';
+import {UnitsRegistryComponent} from '../../themes/drum/app/units-registry/units-registry.component';
 
 @NgModule({
   imports: [
@@ -47,6 +48,11 @@ import { SiteAdministratorGuard } from '../core/data/feature-authorization/featu
         },
         data: { title: 'admin.access-control.groups.title.singleGroup', breadcrumbKey: 'admin.access-control.groups.singleGroup' },
         canActivate: [GroupPageGuard]
+      },
+      {
+        path: 'units',
+        component: UnitsRegistryComponent,
+        // canActivate: UnitAdministratorGuard
       }
     ])
   ]
