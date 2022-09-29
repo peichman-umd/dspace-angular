@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {Unit} from '../core/eperson/models/unit.model';
 import {RequestService} from '../../../../app/core/data/request.service';
 import { UnitDataService } from '../core/eperson/unit-data.service';
+import { RemoteData } from 'src/app/core/data/remote-data';
+import { PaginatedList } from 'src/app/core/data/paginated-list.model';
 
 @Component({
   selector: 'ds-units-registry',
@@ -11,7 +13,7 @@ import { UnitDataService } from '../core/eperson/unit-data.service';
 })
 export class UnitsRegistryComponent implements OnInit {
 
-  units$: BehaviorSubject<Unit> = new BehaviorSubject<Unit>({} as any);
+  units$: Observable<RemoteData<PaginatedList<Unit>>>;
 
   constructor(
     protected requestService: RequestService,
@@ -19,7 +21,7 @@ export class UnitsRegistryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.unitDataService.findAll();
+    this.units$ = this.unitDataService.findAll();
   }
 
 }

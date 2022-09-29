@@ -7,18 +7,21 @@ import { Observable } from 'rxjs';
 import { RemoteData } from 'src/app/core/data/remote-data';
 import { PaginatedList } from 'src/app/core/data/paginated-list.model';
 import { Group } from 'src/app/core/eperson/models/group.model';
+import { UNIT } from './unit.resource-type';
 
 @typedObject
 @inheritSerialization(DSpaceObject)
 export class Unit extends DSpaceObject {
-  @autoserializeAs('name')
-  protected _name: string;
+  static type = UNIT;
 
   @autoserialize
-  public facultyOnly: boolean;
+  facultyOnly: boolean;
+
+  @autoserialize
+  handle: string;
   
   /**
-   * The {@link HALLink}s for this Group
+   * The {@link HALLink}s for this Unit
    */
   @deserialize
   _links: {

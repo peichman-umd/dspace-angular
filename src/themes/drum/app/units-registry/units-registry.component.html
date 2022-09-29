@@ -1,1 +1,3 @@
-<p>units-registry works!</p>
+<div *ngFor="let unit of (units$ | async)?.page">
+{{ unit }}
+</div>
